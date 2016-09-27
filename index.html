@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Bootstrap Modal pop-up on first visit only</title>
+<!-- Bootstrap CSS-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Bootstrap Modal pop-up on first visit only</h1>
+			<p>Using the <a href="https://getbootstrap.com/getting-started/#download">Bootstrap</a> framework, <a href="https://code.jquery.com">JQuery</a> and <a href="https://github.com/js-cookie/js-cookie/tree/master/src">js.cookie.js</a> to create a modal pop-up that will only be triggered on the first visit to the website. The cookie will expire after three days. CDN links are used for Bootstrap and JQuery in this example.</p>
+            
+			<!-- Trigger the modal with a button -->
+			<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  				<div class="modal-dialog">
+    					<div class="modal-content">
+      						<div class="modal-header">
+        						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        						<h4 class="modal-title" id="myModalLabel">The Modal Label</h4>
+ 							<p>This is a Bootstrap Modal popup example.</p>
+      						</div>
+      						<div class="modal-body">
+      							<p>This is the main body of the Modal and could hold a form or a dialogue.</p>
+      						</div>
+      						<div class="modal-footer remove-top">
+        						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      						</div>
+    					</div>
+  				</div>
+			</div>
+                	<!-- /Modal -->
+		</div><!-- /col -->
+	</div><!-- /row -->
+</div><!-- /container>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<!-- JS Includes -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/js.cookie.js"></script>
+    
+<script>
+	if (!Cookies.get('popup')) {
+		setTimeout(function() {
+			$('#myModal').modal();
+		}, 600);
+	}
+	$('#myModal').on('shown.bs.modal', function () {
+		// bootstrap modal callback function
+		// set cookie
+		Cookies.set('popup', 'valid', { expires: 3, path: "/" });
+	})
+</script>
+    
+</body>
+</html>
